@@ -5,16 +5,27 @@
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous">  
+  crossorigin="anonymous">      
     </script>
-
-    <script type='text/javascript'>
-      $.getJSON("steamapi.json", 
-          function (itemdata){
-         console.log(itemdata)}); 
+     
+<script type ="text/javascript">
+    function ajax_get_json(){
+        var xr = new XMLHttpRequest();
+        xr.open("GET", "steamapi.json", true);
+        xr.setRequestHeader("Content-type", "application/json", true);
+        if(xr.readyState == 4 && xr.status == 200){
+        var data = JSON.parse(xr.responseText);
+        var output = document.getElementById("output");   
+        output.innerHTML = data.result.status;    
+        }
+        xr.send(null);
+        output.innerHTML = "Loading.....";
+        
+        
+    }
     
-    </script>
-       
+    </script>    
+    
     </head>
 
 <BODY>
@@ -22,10 +33,10 @@
     <div class= "testcontainer">
         <p>Test 3</p>
     </div>
-    <script>
-var myArr = ["Orange", "Banana", "Mango", "Kiwi" ];
-console.log(myArr);
-</script>
+    
+    <script type ="text/javascript">
+    ajax_get_json();
+    </script>
     
 </BODY>
 </HTML>
