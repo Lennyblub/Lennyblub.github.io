@@ -9,10 +9,13 @@
     </script>
      
 <script>
-    function ajax_get_json(){
+    var key = `615709230B4153A95480098454E76FB3`; 
+    var apiurl = `http://api.steampowered.com/IEconItems_440/GetSchemaItems/v0001/?key=${key}`;
+    
+    function ajax_get_json(url){
         var output = document.getElementById("output");
         var xr = new XMLHttpRequest();
-        xr.open("GET", "steamapi.json", true);
+        xr.open('GET', url , true);
         xr.setRequestHeader("Content-type", "application/json", true);
         xr.onreadystatechange = function(){
             console.log(xr.status + "..." + xr.readyState)
@@ -20,7 +23,7 @@
         var data = JSON.parse(xr.responseText);
         output.innerHTML = data.result.items[0].name;    
         }}   
-        xr.send();
+        xr.send(null);
         output.innerHTML = "Loading.....";
         
         
@@ -37,7 +40,7 @@
     </div>
     
     <script type ="text/javascript">
-    ajax_get_json();
+    ajax_get_json(apiurl);
     </script>
     
 </BODY>
